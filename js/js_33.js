@@ -45,14 +45,16 @@ poster.style.backgroundImage = 'url("img/bg.jpg")';
 
 ///////////////////
 
-let sortMovies, newFilm,
+let newFilm,
     filmInList = [],
+    sortMovies = [], 
     checkIn = false;
 
 function addFilms() {
     listFilms.innerHTML = '';
     filmInList = [];
     sortMovies = movieDB.movies.sort();
+    nameOfFilm();
 
     for (let i = 0; i < sortMovies.length; i++) {        
         filmInList.push(`
@@ -80,8 +82,7 @@ form.addEventListener('submit', (e) => {
     }
 });
 
-console.log(sortMovies);
-
+/*
 function deleteFilm(i) {
     console.log(i);
     try {
@@ -92,34 +93,18 @@ function deleteFilm(i) {
     } finally {
         console.log(`длина массива стала ${filmInList.length} элементов`);
     }
-}
-
-try {
-    for (let i = 0; i < trash.length; i++) {
-        trash[i].addEventListener('click', () => {
-            deleteFilm(i);
-        });
-    }
-} catch(e) {
-    console.log(e.stack);
-}
+}*/
 
 
-/*
 function nameOfFilm() {
-    for (let i = 0; i < sortMovies.length; i++) {
-        if (sortMovies[i].length > 10) {
-            sortMovies[i] = sortMovies[i].slice(10, 10);
+    for (let i = 0; i < sortMovies.length - 1; i++) {
+        if (sortMovies[i].length > 13) {
+            sortMovies[i] = `${sortMovies[i].slice(0, 13)}...`;
         }
     }
-
-    // sortMovies.forEach(item => {
-    //     if (item.length > 10) {
-    //         item = item.replace(10,'');
-    //     }
-    // });    
+    return sortMovies;
 }
-*/
+
 
 checkbox.addEventListener('click', () => {
     if (checkbox.getAttribute('checked')) {
@@ -131,3 +116,30 @@ checkbox.addEventListener('click', () => {
     }
     // console.log(checkIn);
 });
+
+
+function deleteFilm(i) {
+    try {
+        sortMovies.splice(i, 1);
+        // trash[i].remove(i);
+        console.log(sortMovies);
+        addFilms();
+   
+    } catch(err) {
+        console.log('непорядок с функцией');
+        console.log(err.stack);
+    }   
+}
+// deleteFilm(5);
+
+try {
+    for (let i = 0; i < sortMovies.length - 1; i++) {       
+        trash[i].addEventListener('click', () => {
+            deleteFilm(i);
+            i--;
+        });       
+    }
+} catch(err) {
+    console.log('непорядок с корзиной');
+    console.log(err.stack);
+}
