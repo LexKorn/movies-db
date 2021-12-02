@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
             favorit = checkbox.checked;
 
         if (newFilm) {
-            if (newFilm.length > 10) {
-                newFilm = `${newFilm.substring(0, 10)}...`;
+            if (newFilm.length > 20) {
+                newFilm = `${newFilm.substring(0, 20)}...`;
             }
 
             if (favorit) {
@@ -130,4 +130,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }        
     }
     changeTab(0);    
+
+    ////////////////
+    
+    const searchForm = document.querySelector('.search'),
+          searchInput = document.querySelector('.searchInput');
+
+    let searchText;
+
+    searchInput.addEventListener('input', () => {
+        searchText = searchInput.value;
+    });
+        
+    searchForm.addEventListener('submit', () => {
+        let searchRes = [];
+
+        movieDB.movies = movieDB.movies.map(item => item.toUpperCase());
+        searchText = searchText.toUpperCase();
+
+        if (searchText.length >= 3) {
+            for (let i = 0; i < movieDB.movies.length; i++) {
+                if (movieDB.movies[i].includes(searchText)) {
+                    searchRes.push(movieDB.movies[i]);
+                } else {
+                    continue;
+                }
+            }
+            alert(searchRes);
+        }
+    });
+        
 });
