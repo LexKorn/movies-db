@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
           form = document.querySelector('.add'),
           input = document.querySelector('.adding__input'),
           checkbox = document.querySelector('[type="checkbox"]'),
-          tabs = document.querySelectorAll('.promo__menu-item');
+          tabs = document.querySelectorAll('.promo__menu-item'),
+          ratings = document.querySelector('.promo__ratings');
     
     let favoritFilm;
 
@@ -108,24 +109,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     genre.textContent = 'ДРАМА';
                     descrab.textContent = 'ИСТОРИЯ ЧЕЛОВЕКА, ВЫЖИВШЕГО НА ЧУЖОЙ ПЛАНЕТЕ В ОДИНОЧКУ';
                     poster.style.backgroundImage = 'url("img/bg.jpg")';
+                    ratings.innerHTML = `
+                        <span>IMDb: 8.0</span>
+                        <span>Кинопоиск: 7.7</span>
+                    `;
                     break;
             case 1: 
                     title.textContent = 'ИНТЕРНЫ';
                     genre.textContent = 'КОМЕДИЯ';
                     descrab.textContent = 'Интерны, проходящие практику у неординарного заведующего отделением';
                     poster.style.backgroundImage = 'url("img/serials.jpg")';
+                    ratings.innerHTML = `
+                        <span>IMDb: 5.6</span>
+                        <span>Кинопоиск: 6.1</span>
+                    `;
                     break;
             case 2: 
                     title.textContent = 'ЛЕДНИКОВЫЙ ПЕРИОД';
                     genre.textContent = 'КОМЕДИЯ';
                     descrab.textContent = 'Приключения мамонта, льва, ленивца и других обитателей ледникового периода';
                     poster.style.backgroundImage = 'url("img/cartoons.jpg")';
+                    ratings.innerHTML = `
+                        <span>IMDb: 8.6</span>
+                        <span>Кинопоиск: 9.1</span>
+                    `;
                     break;
             case 3: 
                     title.textContent = 'КОРОЛЬ И ШУТ';
                     genre.textContent = 'ПАНК-РОК';
                     descrab.textContent = 'САМАЯ КРУТАЯ ГРУППА ОТЕЧЕСТВЕННОГО ПАНК-РОКА';
                     poster.style.backgroundImage = 'url("img/clips.jpg")';
+                    ratings.innerHTML = `
+                        <span>IMDb: 7.6</span>
+                        <span>Кинопоиск: 8.1</span>
+                    `;
                     break;
         }        
     }
